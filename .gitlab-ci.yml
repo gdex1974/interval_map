@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  tags:
+    - docker
+  image: gcc:latest
+  before_script:
+    - apt-get update
+    - apt-get install cmake libgtest-dev -y
+  script:
+    - cmake -B build -S .
+    - cmake --build build --target all
+  artifacts:
+    paths:
+      - build/
+
+unit-test-job:   # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
+  tags:
+    - docker
+  image: gcc:latest
+  before_script:
+    - apt-get update
+    - apt-get install cmake -y
+  dependencies:
+    - build-job
+  script:
+    - ctest --test-dir build/tests/
+
+sast:
+  stage: test
+  tags:
+    - sast-runner
+include:
+  - template: SAST.gitlab-ci.yml

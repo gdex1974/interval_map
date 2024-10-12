@@ -1,0 +1,7 @@
+find_package(GTest)
+if(GTest_FOUND)
+    add_executable(IntervalMapTest IntervalMapTest.cpp)
+    target_link_libraries(IntervalMapTest interval_map GTest::GTest GTest::Main)
+    enable_testing()
+    add_test(NAME IntervalMapTest COMMAND IntervalMapTest)
+endif()
