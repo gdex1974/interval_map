@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install gtest
+        run: sudo apt-get install libgtest-dev
+
       - uses: actions/checkout@v4
 
       - name: Configure CMake
