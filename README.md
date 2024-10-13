@@ -23,20 +23,16 @@ The assign method tries to simplify the intervals by merging them if possible.
 
 ## Features
 
-- Efficient storage and retrieval of interval-based key-value pairs.
-- Support for overlapping intervals.
-- Range queries to find all intervals that overlap with a given range.
-- Unit tests to ensure correctness and robustness.
+- log(N) complexity for insert and lookup operations.
+- Automatic interval simplification on insertions.
 
-## Getting Started
-
-### Prerequisites
+## Prerequisites
 
 - C++11 or later
 - CMake 3.9 or later
 - Google Test for unit tests
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```sh
